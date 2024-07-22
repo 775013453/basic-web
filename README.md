@@ -14,7 +14,7 @@
 ### 1.从仓库下载文件,并命名为vue-demo（可以根据实际情况重命名）
 
 ```
-degit basic-web vue-demo
+degit 775013453/basic-web vue-demo
 ```
 
 ### 2.安装依赖包
