@@ -1,0 +1,24 @@
+html,
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: Helvetica, Tahoma, Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #00a98d;
+}

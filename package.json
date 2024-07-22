@@ -1,0 +1,47 @@
+{
+  "name": "as-frame",
+  "private": true,
+  "description": "基于vue3的基础框架",
+  "author": "almostSir",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "serve": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "format": "npx prettier . --write"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "axios": "^1.6.2",
+    "butterfly-dag": "^4.3.27",
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.11",
+    "element-plus": "^2.4.4",
+    "mockjs": "^1.1.0",
+    "pinia": "^2.1.7",
+    "pinyin-pro": "^3.23.1",
+    "vue": "^3.3.11",
+    "vue-draggable-plus": "^0.5.2",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.27.0",
+    "prettier": "^3.3.3",
+    "sass": "^1.69.5",
+    "typescript": "^5.2.2",
+    "unplugin-auto-import": "^0.18.0",
+    "unplugin-icons": "^0.19.0",
+    "unplugin-vue-components": "^0.27.2",
+    "vite": "^5.0.8",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-mock": "^2.9.8",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^2.0.26"
+  }
+}
