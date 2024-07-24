@@ -1,11 +1,15 @@
-html,
+@use "./variable" as v;
+
+:root,
 body {
   margin: 0;
-  font-size: 16px;
+  font-size: v.$theme-text-size;
   font-family: Helvetica, Tahoma, Arial, sans-serif;
-  color: rgba(0, 0, 0, 0.8);
+  color: v.$theme-text-color;
   box-sizing: border-box;
   overflow: auto;
+  background: v.$theme-bg-color v.$theme-bg-img;
+  background-size: cover;
 }
 
 .main {
@@ -20,5 +24,5 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #00a98d;
+  background-color: v.$scrollbar-thumb;
 }

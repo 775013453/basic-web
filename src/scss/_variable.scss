@@ -1,0 +1,22 @@
+/**
+ * description：scss文件定义的变量
+ * organization：CITC
+ * author: almostSir
+ * date：2024-07-24 15:15:12
+ */
+
+$theme-bg-color: #fcfcfc; // 主题背景颜色
+$theme-bg-img: url("../assets/img/home.png"); // 主题背景图片
+
+$theme-text-size: 16px; // 文字大小
+$theme-text-color: rgba(0, 0, 0, 0.8); // 文字颜色
+
+$theme-btn-bg: rgb(22, 119, 255); // 按钮背景颜色
+$theme-btn-color: rgb(255, 255, 255); // 按钮文字颜色
+
+$theme-dialog-bg: rgba(255, 255, 255, 1); // 模态框背景颜色
+$theme-dialog-text-color: rgb(255, 255, 255); // 模态框文字颜色
+$theme-dialog-header-bg: rgba(255, 255, 255, 1); // 模态框头部背景颜色
+$theme-dialog-header-color: rgba(0, 0, 0, 0.8); // 模态框头部文字颜色
+
+$scrollbar-thumb: #00a98d; // 滚动条滑块颜色（webkit内核浏览器有效）
