@@ -17,7 +17,7 @@
         v-else
         :key="item.level"
         :index="item.level"
-        @click="item.clickCallback(item)"
+        @click="(item.clickCallback && item.clickCallback(item)) || jumpPage(item)"
       >
         <el-button
           link
@@ -40,6 +40,8 @@
     }
   });
 
+  const router = useRouter();
+
   function switchIcon(icon: string) {
     if (icon) {
       const t = icon.substr(icon.lastIndexOf('-') + 1, icon.length);
@@ -51,5 +53,9 @@
     } else {
       return '';
     }
+  }
+
+  function jumpPage(item) {
+    router.push(item.url);
   }
 </script>

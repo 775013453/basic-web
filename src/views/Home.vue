@@ -1,23 +1,27 @@
 <template>
   <article class="main">
-    <div>
-      <h1>{{ systemConfig.systemName }}-{{ systemConfig.version }}-{{ systemConfig.visitorMode }}</h1>
-      <h2>主题：{{ theme }}</h2>
-      <button @click="shareStore.switchTheme()">切换主题</button>
-    </div>
+    <menu-tree :menus="menus"></menu-tree>
+    <div class="router"><router-view /></div>
   </article>
 </template>
 
 <script lang="ts" setup>
-  import { useShareStore } from '@/store';
-  import { SYSTEM_CONFIG } from '@/utils/system-config';
+  import { loginInfo } from '@/config/login-config';
+  import { commonFunc } from '@/utils/common-func';
 
-  const shareStore = useShareStore(),
-    theme = computed(() => shareStore.theme),
-    systemConfig = SYSTEM_CONFIG; // 主题色，默认为false（白色），可以设置成true（黑色）
+  const tempMenus = commonFunc.arrayAssembleTree({
+    data: loginInfo.datas as Array<TNode>,
+    field: 'seq',
+    parentField: 'parentSeq'
+  });
+  const menus = tempMenus.children;
 </script>
 <style lang="scss" scoped>
   .main {
-    padding: 16px;
+    display: flex;
+    box-sizing: border-box;
+  }
+  .router {
+    flex: 1;
   }
 </style>

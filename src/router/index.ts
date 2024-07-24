@@ -6,18 +6,19 @@
  */
 
 import Home from '@/views/Home.vue';
-import Table from '@/views/Table.vue';
 import * as VueRouter from 'vue-router';
 import { RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
-    component: Home
-  },
-  {
-    path: '/table',
-    component: Table
+    component: Home,
+    children: [
+      {
+        path: 'table',
+        component: () => import('@/views/Table.vue')
+      }
+    ]
   },
   {
     path: '/:catchAll(.*)',

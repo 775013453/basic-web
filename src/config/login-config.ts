@@ -13,18 +13,18 @@ export const loginInfo = {
   },
   datas: [
     {
-      funcName: '系统设置', // 菜单名
-      imgUrl: 'Setting', // 图标
-      seq: 1, // 菜单编码
-      isIntf: '0' // 是否菜单 ‘0’表示菜单
+      id: 1, // 菜单id
+      label: '系统设置', // 菜单名
+      icon: 'Setting', // 图标
+      seq: 1 // 菜单编码
     },
     {
-      funcName: '字典管理',
-      imgUrl: 'Memo',
+      id: 2, // 菜单id
+      label: '字典管理',
+      icon: 'Memo',
       seq: 2,
       parentSeq: 1, // 父级菜单编码
-      url: 'dict',
-      isIntf: '0'
+      url: '/home/table'
     }
   ]
 };

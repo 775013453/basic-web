@@ -15,7 +15,7 @@
         :key="item.level"
         :index="item.level"
         :title="item.label"
-        @click="item.clickCallback(item)"
+        @click="(item.clickCallback && item.clickCallback(item)) || jumpPage(item)"
       >
         <el-button
           link
@@ -44,7 +44,7 @@
       default: false
     },
     openeds: {
-      type: Array<object>,
+      type: Array<string>,
       default() {
         return [];
       }
@@ -54,6 +54,8 @@
       default: false
     }
   });
+
+  const router = useRouter();
 
   function switchIcon(icon: string) {
     if (icon) {
@@ -67,6 +69,10 @@
       return '';
     }
   }
+
+  function jumpPage(item) {
+    router.push(item.url);
+  }
 </script>
 
 <style lang="scss">
@@ -74,6 +80,8 @@
     height: 100%;
     border-right: 0;
     width: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .el-menu-vertical.el-menu {
