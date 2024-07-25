@@ -1,32 +1,33 @@
 <template>
-  <el-sub-menu :index="props?.menu?.level">
-    <template #title>
+  <template
+    v-for="item in props.menu"
+    :key="item.id"
+  >
+    <template v-if="item.children && item.children.length > 0">
+      <el-sub-menu :index="item.id">
+        <template #title>
+          <el-button
+            link
+            :icon="switchIcon(item.icon)"
+          ></el-button>
+          <span>{{ item.label }}</span>
+        </template>
+        <sub-menu :menu="item.children"></sub-menu>
+      </el-sub-menu>
+    </template>
+    <el-menu-item
+      v-else
+      :index="item.id"
+      :title="item.label"
+      @click="(item.clickCallback && item.clickCallback(item)) || jumpPage(item)"
+    >
       <el-button
         link
-        :icon="switchIcon(props?.menu?.icon) || 'Notebook'"
+        :icon="switchIcon(item.icon)"
       ></el-button>
-      <span>{{ props?.menu?.label }}</span>
-    </template>
-    <template v-for="item in props?.menu?.children">
-      <sub-menu
-        v-if="item.children && item.children.length > 0"
-        :key="item.level"
-        :menu="item"
-      ></sub-menu>
-      <el-menu-item
-        v-else
-        :key="item.level"
-        :index="item.level"
-        @click="(item.clickCallback && item.clickCallback(item)) || jumpPage(item)"
-      >
-        <el-button
-          link
-          :icon="switchIcon(item.icon) || 'Notebook'"
-        ></el-button>
-        <span>{{ item.label }}</span>
-      </el-menu-item>
-    </template>
-  </el-sub-menu>
+      <span>{{ item.label }}</span>
+    </el-menu-item>
+  </template>
 </template>
 
 <script lang="ts" setup>
@@ -39,7 +40,7 @@
       }
     }
   });
-
+  console.log(props.menu);
   const router = useRouter();
 
   function switchIcon(icon: string) {

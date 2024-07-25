@@ -4,26 +4,7 @@
     :default-openeds="props.openeds"
     :class="{ menu__black: props.theme }"
   >
-    <template v-for="item in props.menus">
-      <sub-menu
-        v-if="item.children && item.children.length > 0"
-        :key="item.level"
-        :menu="item"
-      ></sub-menu>
-      <el-menu-item
-        v-else
-        :key="item.level"
-        :index="item.level"
-        :title="item.label"
-        @click="(item.clickCallback && item.clickCallback(item)) || jumpPage(item)"
-      >
-        <el-button
-          link
-          :icon="switchIcon(item.icon) || 'Notebook'"
-        ></el-button>
-        <span>{{ item.label }}</span>
-      </el-menu-item>
-    </template>
+    <sub-menu :menu="props.menus"></sub-menu>
   </el-menu>
 </template>
 
@@ -54,25 +35,6 @@
       default: false
     }
   });
-
-  const router = useRouter();
-
-  function switchIcon(icon: string) {
-    if (icon) {
-      const t = icon.substr(icon.lastIndexOf('-') + 1, icon.length);
-      if (t.length > 1) {
-        return t.charAt(0).toUpperCase() + t.substr(1, t.length);
-      } else {
-        return '';
-      }
-    } else {
-      return '';
-    }
-  }
-
-  function jumpPage(item) {
-    router.push(item.url);
-  }
 </script>
 
 <style lang="scss">
@@ -81,8 +43,6 @@
     max-height: 90vh;
     border-right: 0;
     width: 200px;
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 
   .el-menu-vertical.el-menu {
