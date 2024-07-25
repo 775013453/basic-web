@@ -78,6 +78,7 @@
 <style lang="scss">
   .el-menu {
     height: 100%;
+    max-height: 90vh;
     border-right: 0;
     width: 200px;
     overflow-x: hidden;
