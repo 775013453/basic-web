@@ -117,7 +117,7 @@
   }
 
   .el-sub-menu__title {
-    background: rgba(255, 255, 245, 1);
+    background: rgba(255, 255, 255, 1);
   }
 
   // 修改菜单栏风格为黑色，start

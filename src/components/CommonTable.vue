@@ -412,6 +412,11 @@
     resField: {
       type: String,
       default: 'datas'
+    },
+    // 出去表格高度以外的其他高度总和
+    otherHeight: {
+      type: Number,
+      default: 0
     }
   });
   const formRef = ref<FormInstance>(); // 表单模板变量
@@ -421,7 +426,7 @@
     pageSizes: Ref<Array<number>> = ref([10, 20, 30, 50]),
     formData: Ref<object> = ref({}),
     selectedData: Ref<Array<object>> = ref([]),
-    tableHeight: Ref<string> = ref(`calc(100% - 108px)`),
+    tableHeight: Ref<string> = ref(`calc(100% - 120px)`),
     innerTopBtns: Ref<Array<OperateBtn>> = ref([]),
     innerOperations: Ref<Array<OperateBtn>> = ref([]),
     noData = ref(true),
@@ -446,11 +451,12 @@
   });
 
   onMounted(() => {
-    const h = document.getElementsByClassName('table-search')[0].clientHeight + 64;
+    // 54为顶部高度
+    const h = document.getElementsByClassName('table-search')[0].clientHeight + 64 + props.otherHeight;
     tableHeight.value = `calc(100vh - ${h}px)`;
     // 监听浏览器窗口编号，实时设置表格高度
     window.onresize = () => {
-      const h = document.getElementsByClassName('table-search')[0].clientHeight + 64;
+      const h = document.getElementsByClassName('table-search')[0].clientHeight + 64 + props.otherHeight;
       tableHeight.value = `calc(100vh - ${h}px)`;
     };
   });
@@ -566,8 +572,7 @@
 
   .table-box {
     padding: 12px 12px 0;
-    width: calc(100% - 24px);
-
+    width: calc(100% - 26px);
     .pagination-content {
       width: 100%;
       display: flex;
