@@ -9,6 +9,7 @@
       :formList="tbFormList"
       :url="tbUrl"
       :theme="theme"
+      :otherHeight="54"
       findField="dictQueryVo"
     ></common-table>
     <el-drawer
@@ -44,10 +45,10 @@
 
 <script lang="ts" setup>
   import CommonTable from '@/components/CommonTable.vue';
+  import { axiosRequest } from '@/components/utils/http-service';
   import { DETAIL_CONFIG, EDIT_FORM, EDIT_FORM_RULES, TB_FORM, TB_HEADER } from '@/config/dict-config';
   import { useShareStore } from '@/store';
-  import { axiosRequest } from '@/utils/send-http';
-  import { ASYNC_URLS } from '@/utils/system-config';
+  import { API_URLS } from '@/utils/system-config';
   const shareStore = useShareStore();
 
   let tbHeader = TB_HEADER, // 表头
@@ -91,10 +92,15 @@
     dictDetailConfig = DETAIL_CONFIG, // 详情配置
     dictDetailData: { [key: string]: string | number | object } = {}, // 字典详情数据
     rules = EDIT_FORM_RULES, // 表单校验规则
-    tbUrl = ASYNC_URLS.dictList, // 表格接口地址
+    tbUrl = API_URLS.dictList, // 表格接口地址
     theme = computed(() => shareStore.theme); // 主题
   const commonTableRef = ref<InstanceType<typeof CommonTable>>();
 
+  /**
+   * description：新增
+   * author: almostSir
+   * date：2024-07-26 11:43:40
+   */
   async function handleTbAdd() {
     dialogTitle.value = '字典新增';
     rawData.value = {};
@@ -103,6 +109,11 @@
     }
   }
 
+  /**
+   * description：编辑
+   * author: almostSir
+   * date：2024-07-26 11:43:53
+   */
   async function handleTbEdit(data) {
     currentDictId = data.dictId;
     rawData.value = JSON.parse(JSON.stringify(data));
@@ -113,6 +124,11 @@
     }
   }
 
+  /**
+   * description：详情
+   * author: almostSir
+   * date：2024-07-26 11:44:04
+   */
   async function handleTbDetail(data) {
     currentDictId = data.dictId;
     const newData = await getDictDetail(data);
@@ -130,6 +146,11 @@
     }
   }
 
+  /**
+   * description：删除
+   * author: almostSir
+   * date：2024-07-26 11:44:19
+   */
   function handleTbDelete(data) {
     currentDictId = data.dictId;
     ElMessageBox.confirm(`此操作将永久删除该字典【${data.name}】, 是否继续?`, '提示', {
@@ -140,7 +161,7 @@
       .then(() => {
         axiosRequest({
           method: 'POST',
-          url: `${ASYNC_URLS.dictDelete}`,
+          url: `${API_URLS.dictDelete}`,
           params: {
             dictModifyVo: {
               dictId: currentDictId
@@ -170,10 +191,15 @@
       });
   }
 
+  /**
+   * description：编辑/新增数据提交处理
+   * author: almostSir
+   * date：2024-07-26 11:44:39
+   */
   function dictFormSubmit(data) {
     axiosRequest({
       method: 'POST',
-      url: ASYNC_URLS.dictSaveOrUpdate,
+      url: API_URLS.dictSaveOrUpdate,
       params: {
         dictModifyVos: [data]
       }
@@ -201,20 +227,35 @@
     });
   }
 
+  /**
+   * description：关闭编辑表单
+   * author: almostSir
+   * date：2024-07-26 11:45:15
+   */
   function dictFormReturn() {
     rawData.value = {};
     dictFormVisible.value = false;
   }
 
+  /**
+   * description：关闭详情表单
+   * author: almostSir
+   * date：2024-07-26 11:45:41
+   */
   function dictDetailReturn() {
     dictDetailVisible.value = false;
   }
 
+  /**
+   * description：获取全部数据
+   * author: almostSir
+   * date：2024-07-26 11:45:55
+   */
   function getDictAll(switchData?) {
     return new Promise((resolve) => {
       axiosRequest({
         method: 'POST',
-        url: ASYNC_URLS.dictListAll,
+        url: API_URLS.dictListAll,
         params: {
           dictQueryVo: {
             dictId: switchData && switchData.dictId
@@ -249,11 +290,16 @@
     });
   }
 
+  /**
+   * description：获取详情
+   * author: almostSir
+   * date：2024-07-26 11:46:12
+   */
   function getDictDetail(data?) {
     return new Promise((resolve, reject) => {
       axiosRequest({
         method: 'POST',
-        url: ASYNC_URLS.dictDetail,
+        url: API_URLS.dictDetail,
         params: {
           dictQueryVo: {
             dictId: data && data.dictId

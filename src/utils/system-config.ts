@@ -5,7 +5,7 @@
  * date：2024-07-17 17:36:16
  */
 
-import { commonFunc } from './common-func';
+import { commonFunc } from '@/components/utils/common-func';
 
 export const SYSTEM_CONFIG = {
   systemName: '',
@@ -25,8 +25,8 @@ commonFunc.ajaxRequest({
   }
 });
 
-// 系统接口配置
-export const ASYNC_URLS = {
+// 系统请求接口配置
+export const API_URLS = {
   // 登录/登出/验证码接口
   login: `${BASE_URL}/api/login`, // 登录
   logout: `${BASE_URL}/api/logout`, // 登出

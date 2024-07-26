@@ -9,8 +9,8 @@
 </template>
 
 <script lang="ts" setup>
-  import SubMenu from '@/components/SubMenu.vue';
   import { TreeNodeData } from 'element-plus/es/components/tree-v2/src/types.mjs';
+  import SubMenu from './SubMenu.vue';
 
   // menus为菜单树，collapse为菜单栏伸缩,opened为当前打开的sub-menu的index的数组，theme为主题false为白色，true为黑色
   const props = defineProps({
@@ -44,7 +44,6 @@
     border-right: 0;
     width: 200px;
   }
-
   .el-menu-vertical.el-menu {
     overflow-y: auto;
   }
@@ -57,7 +56,10 @@
     min-width: 180px;
   }
 
-  .el-sub-menu__title:hover,
+  .el-sub-menu__title:hover {
+    color: #2c2c2c;
+  }
+
   .el-menu-item:focus,
   .el-menu-item:hover {
     background-color: #409eff;

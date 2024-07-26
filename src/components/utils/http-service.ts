@@ -5,15 +5,47 @@
  * date：2024-07-17 17:54:43
  */
 
-import { ASYNC_URLS } from './system-config';
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-let vm: any;
+let vm: any; // vue全局变量
+/**
+ * description：设置vue全局变量，主要供loading,message等组件使用
+ * author: almostSir
+ * date：2024-07-26 11:07:09
+ */
 export const vueThis = (_this) => {
   vm = _this.config.globalProperties;
 };
 
-// GET请求参数拼接到url后
+let whitelist = ['login']; // 接口白名单列表，即无论token是否存在均可以调用接口
+
+/**
+ * description：设置接口白名单，即无论token是否存在均可以调用接口
+ * author: almostSir
+ * date：2024-07-26 11:08:03
+ */
+export function setWhitelist(data: Array<string>) {
+  whitelist = data;
+}
+
+/**
+ * description：根据url检测是否在白名单内，模糊检测
+ * author: almostSir
+ * date：2024-07-26 11:08:53
+ */
+function testWhitelist(url: string) {
+  const state = whitelist.some((e) => {
+    if (url.includes(e)) {
+      return true;
+    }
+  });
+  return state;
+}
+
+/**
+ * description：GET请求参数拼接处理
+ * author: almostSir
+ * date：2024-07-26 10:45:32
+ */
 function paramsJoin(url: string, params): string {
   for (const k of Object.keys(params)) {
     if (url.includes('?')) {
@@ -25,11 +57,15 @@ function paramsJoin(url: string, params): string {
   return url;
 }
 
-// 发送请求，data参数：{url, method, params},params参数为{key:value}
+/**
+ * description：发送请求，data参数：{url, method, params},params参数为{key:value}
+ * author: almostSir
+ * date：2024-07-26 10:46:03
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function request(data: RequestOptions): Promise<any> {
   const token = sessionStorage.getItem('_sid');
-  if (token || data.url.includes(ASYNC_URLS.login)) {
+  if (token || testWhitelist(data.url)) {
     const loading = vm.$loading({
       lock: true,
       text: 'Loading',
@@ -85,7 +121,7 @@ function request(data: RequestOptions): Promise<any> {
               onClose: () => {
                 if (data.opCode === '00002') {
                   sessionStorage.clear();
-                  vm.$router.push('/login');
+                  vm.$router.push(`${location.host}${location.pathname}`);
                 }
               }
             });
@@ -110,7 +146,7 @@ function request(data: RequestOptions): Promise<any> {
         duration: 1500,
         onClose: () => {
           sessionStorage.clear();
-          vm.$router.push('/login');
+          vm.$router.push(`${location.host}${location.pathname}`);
         }
       });
     } else {

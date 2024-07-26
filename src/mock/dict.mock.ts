@@ -10,7 +10,7 @@ export default [
     url: '/api/dict/list',
     method: 'post',
     timeout: 0,
-    response: (req) => {
+    response: () => {
       const datas: Array<object> = [];
       const json = {
         typeName: '@string(6)',
@@ -24,7 +24,6 @@ export default [
       for (let index = 0; index < 20; index++) {
         datas.push(json);
       }
-      console.log(req);
       return {
         datas,
         operateSuccess: true,
@@ -36,7 +35,7 @@ export default [
     url: '/api/dict/findById',
     method: 'post',
     timeout: 0,
-    response: (req) => {
+    response: () => {
       const json = {
         typeName: '@string(6)',
         type: '@string(3)',
@@ -46,7 +45,6 @@ export default [
         parentValue: '@pick(["1","2","3","4","5","6"])',
         updateTime: '@date'
       };
-      console.log(req);
       return {
         datas: json,
         operateSuccess: true
@@ -57,7 +55,7 @@ export default [
     url: '/api/dict/listAll',
     method: 'post',
     timeout: 0,
-    response: (req) => {
+    response: () => {
       const datas: Array<object> = [];
       const json = {
         typeName: '@string(6)',
@@ -70,7 +68,6 @@ export default [
       for (let index = 0; index < 20; index++) {
         datas.push(json);
       }
-      console.log(req);
       return {
         datas,
         operateSuccess: true,
@@ -82,12 +79,11 @@ export default [
     url: '/api/dict/delete',
     method: 'post',
     timeout: 0,
-    response: (req) => {
+    response: () => {
       const datas = {
         operateSuccess: true,
         msg: '删除成功'
       };
-      console.log(req);
       return datas;
     }
   },
@@ -95,12 +91,11 @@ export default [
     url: '/api/dict/saveOrUpdateAll',
     method: 'post',
     timeout: 0,
-    response: (req) => {
+    response: () => {
       const datas = {
         operateSuccess: true,
         msg: '新增/更新成功'
       };
-      console.log(req);
       return datas;
     }
   }

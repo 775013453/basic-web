@@ -1,0 +1,13 @@
+/**
+ * description：更改element相关组件的样式，目前只是使用举例，需要根据实际情况参考例子添加/更改样式
+ * organization：self
+ * author: almostSir
+ * date：2024-07-26 10:15:04
+ */
+
+@use "./variable" as v;
+
+:root {
+  --el-color-primary: #{v.$theme-bg-color};
+  --el-menu-item-height: #{v.$menu-item-height};
+}

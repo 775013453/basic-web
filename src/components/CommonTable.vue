@@ -242,10 +242,10 @@
 </template>
 
 <script lang="ts" setup>
-  import { commonFunc } from '@/utils/common-func';
-  import { axiosRequest } from '@/utils/send-http';
   import { FormInstance } from 'element-plus';
   import { ref } from 'vue';
+  import { commonFunc } from './utils/common-func';
+  import { axiosRequest } from './utils/http-service';
 
   /**
    * description：公共表格
@@ -461,7 +461,11 @@
     };
   });
 
-  // 请求数据
+  /**
+   * description：请求数据处理
+   * author: almostSir
+   * date：2024-07-26 11:53:42
+   */
   function searchData(params = { pageNo: 1, pageSize: 10 }) {
     pageInfo.value.currentPage = params.pageNo;
     params.pageSize = pageInfo.value.pageSize || 10;
@@ -485,7 +489,11 @@
       });
     }
   }
-  // 每页数量发生改变
+  /**
+   * description：每页数量发生改变处理
+   * author: almostSir
+   * date：2024-07-26 11:51:37
+   */
   function handleSizeChange(val) {
     if (pageInfo.value.currentPage * val > pageInfo.value.total) {
       searchData({ pageNo: 1, pageSize: val });
@@ -496,18 +504,33 @@
       });
     }
   }
-  // 页码改变
+
+  /**
+   * description：页码改变处理
+   * author: almostSir
+   * date：2024-07-26 11:51:50
+   */
   function handleCurrentChange(val) {
     searchData({
       pageNo: val,
       pageSize: pageInfo.value.pageSize
     });
   }
-  // 多选
+
+  /**
+   * description：多选处理
+   * author: almostSir
+   * date：2024-07-26 11:52:03
+   */
   function handleSelectionChange(val) {
     selectedData.value = val;
   }
-  // 搜索
+
+  /**
+   * description：搜索处理
+   * author: almostSir
+   * date：2024-07-26 11:52:28
+   */
   function handleQuery() {
     pageInfo.value.currentPage = 1;
     searchData({
@@ -515,7 +538,12 @@
       pageSize: pageInfo.value.pageSize
     });
   }
-  // 重置
+
+  /**
+   * description：重置处理
+   * author: almostSir
+   * date：2024-07-26 11:52:45
+   */
   function resetQuery() {
     formRef?.value?.resetFields();
     searchData({
@@ -523,7 +551,12 @@
       pageSize: pageInfo.value.pageSize
     });
   }
-  // 计算总页数
+
+  /**
+   * description：计算总页数
+   * author: almostSir
+   * date：2024-07-26 11:53:00
+   */
   function totalPage(total: number, size: number) {
     // 计算总页数
     let totalPage = 1;
@@ -535,7 +568,12 @@
     }
     return totalPage;
   }
-  // 按钮权限校验控制
+
+  /**
+   * description：按钮权限校验控制
+   * author: almostSir
+   * date：2024-07-26 11:53:19
+   */
   function btnAuthHandle(topBtns: Array<OperateBtn>, operations: Array<OperateBtn>) {
     innerTopBtns.value = topBtns;
     innerOperations.value = operations;

@@ -5,7 +5,7 @@
  * date：2024-07-17 15:38:41
  */
 
-export const SYSTEM_DICT: DObject = {
+export let systemDict: DObject = {
   // 性别
   gender: [
     { label: '男性', value: '1' },
@@ -23,3 +23,12 @@ export const SYSTEM_DICT: DObject = {
     { label: '否', value: '0' }
   ]
 };
+
+/**
+ * description：更新系统字典数据，建议在使用前更新，例如：登录后更新
+ * author: almostSir
+ * date：2024-07-26 10:28:49
+ */
+export function updateDict(data: DObject) {
+  systemDict = data;
+}

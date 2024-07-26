@@ -154,8 +154,8 @@
    * date：2024-07-17 18:47:52
    */
 
-  import InputTree from '@/components/InputTree.vue';
   import { FormInstance } from 'element-plus';
+  import InputTree from './InputTree.vue';
   const props = defineProps({
     // 表单元素
     /**
@@ -221,6 +221,11 @@
     formData.value = toRefs(props.rawData);
   });
 
+  /**
+   * description：提交按钮处理方法
+   * author: almostSir
+   * date：2024-07-26 11:51:03
+   */
   function handleSubmit() {
     if (formDataRef.value) {
       formDataRef.value.validate((isValid) => {
@@ -231,6 +236,11 @@
     }
   }
 
+  /**
+   * description：关闭按钮处理方法
+   * author: almostSir
+   * date：2024-07-26 11:50:56
+   */
   function handleReturn() {
     emit('formReturn');
   }

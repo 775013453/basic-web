@@ -38,6 +38,11 @@
       return node;
     };
 
+    /**
+     * description：先生扩展按钮
+     * author: almostSir
+     * date：2024-07-26 11:56:39
+     */
     showExpandBtn(container) {
       const expandBtn: HTMLDivElement = document.createElement('div');
       expandBtn.classList.add('expand-btn');
@@ -62,6 +67,11 @@
       container.append(expandBtn);
     }
 
+    /**
+     * description：鼠标右键点击处理
+     * author: almostSir
+     * date：2024-07-26 11:57:17
+     */
     mouseRightClick(id, e) {
       // 防止重复创建右键菜单栏
       const t = document.getElementsByClassName('mouse-menu');
@@ -114,6 +124,11 @@
     drawTree(props.treeData);
   });
 
+  /**
+   * description：绘制树形结构
+   * author: almostSir
+   * date：2024-07-26 11:57:36
+   */
   function drawTree(treeData) {
     let root = document.getElementById('tree-map');
     canvas = new TreeCanvas({
@@ -161,6 +176,11 @@
     });
   }
 
+  /**
+   * description：添加树形节点
+   * author: almostSir
+   * date：2024-07-26 11:57:50
+   */
   function addNodeClass(nodes) {
     nodes.Class = BaseNode;
     if (nodes.children && nodes.children.length) {
@@ -173,7 +193,7 @@
 
 <style lang="scss">
   #tree-map {
-    height: calc(100% - 36px);
+    height: 100%;
     width: 100%;
     background: #f9f9f9;
   }

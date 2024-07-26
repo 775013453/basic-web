@@ -5,7 +5,7 @@
  * date：2024-07-17 15:35:03
  */
 
-import { SYSTEM_DICT } from './system-dict';
+import { systemDict } from './system-dict';
 
 export const commonFunc = {
   // 算法：将数组类型组装成树形结构数据,childrenNullDisabled（子元素为空不可选设置,true时，不存在子元素不能选）
@@ -19,42 +19,47 @@ export const commonFunc = {
       const data: Array<TNode> = [];
       treeData.data.forEach((e) => {
         // 数据对象下字段field配置字段的值作为根目录节点，如果没有设置值则默认新建root根节点
-        if (e[treeData.field] === treeData.value) {
+        if (treeData.value && e[treeData.field] === treeData.value) {
           rootNode = e;
         }
+
         if (id === e[treeData.parentField]) {
+          if (e.children && e.children.length === 0) {
+            // isLeaf表示叶子节点
+            e.isLeaf = true;
+            if (childrenNullDisabled && e.disabled === undefined) {
+              e.disabled = true;
+            }
+          } else {
+            e.isLeaf = false;
+          }
           data.push(e);
           e.children = switchHandle(treeData, e[treeData.field] as string | number);
           e.children.forEach((m) => {
-            m.parent = e;
+            m.parent = {
+              id: m.id,
+              label: m.label
+            };
           });
         }
       });
-      data.forEach((e) => {
-        if (e.children && e.children.length === 0) {
-          // isLeaf表示叶子节点
-          e.isLeaf = true;
-          if (childrenNullDisabled && e.disabled === undefined) {
-            e.disabled = true;
-          }
-        } else {
-          e.isLeaf = false;
-        }
-      });
-
       return data;
     }
+
     const data = switchHandle(treeData, treeData.value);
     rootNode.children = data;
     rootNode.children.forEach((m) => {
-      m.parent = rootNode;
+      m.parent = {
+        id: rootNode.id,
+        label: rootNode.label
+      };
     });
     return rootNode;
   },
   // 全局字典value转换label过滤器
   dictSwitch(val: Array<string | number> | string, type: string): string | number {
     const value: Array<string> = [];
-    const list: Array<DNode> = SYSTEM_DICT[type];
+    const list: Array<DNode> = systemDict[type];
     if (val instanceof Array) {
       val = val.join(',');
     }
@@ -101,7 +106,7 @@ export const commonFunc = {
     }
     return S4() + S4() + S4() + S4() + S4() + S4() + S4() + S4();
   },
-  // ajax请求方法
+  // 自定义ajax请求方法
   ajaxRequest({ url, method, headers = {}, params, isAsync = true, callBack, errorBack }: RequestOptions) {
     // 同步请求server-ip.json文件数据获取服务端地址配置
     let xhr: XMLHttpRequest;

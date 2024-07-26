@@ -15,14 +15,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(0, 0, 0, 0.15);
     section {
       text-align: center;
       img {
-        width: 180px;
+        width: 360px;
       }
       h1 {
         width: 100%;
         text-align: center;
+        font-size: 2em;
       }
     }
   }

@@ -52,9 +52,9 @@
 </template>
 
 <script lang="ts" setup>
-  import { commonFunc } from '@/utils/common-func';
   import { ElTree } from 'element-plus';
   import { TreeNodeData } from 'element-plus/lib/components/tree-v2/src/types.js';
+  import { commonFunc } from './utils/common-func';
 
   const emit = defineEmits(['update:selectedData']);
   const props = defineProps({
@@ -75,6 +75,10 @@
     rightTitle: {
       type: String,
       default: '已选中叶子节点'
+    },
+    childrenNullDisabled: {
+      type: Boolean,
+      default: true
     }
   });
 
@@ -84,7 +88,7 @@
     treeRef = ref<InstanceType<typeof ElTree>>(); // 列表下的选中数据,点击移除按钮后将选中的数据移动到树形结构数据下
 
   onMounted(() => {
-    setTransferData(props.serviceData, props.selectedData);
+    setTransferData(props.serviceData, props.selectedData, props.childrenNullDisabled);
   });
 
   /**
@@ -156,6 +160,11 @@
     emit('update:selectedData', listData.value);
   }
 
+  /**
+   * description：设置传输数据
+   * author: almostSir
+   * date：2024-07-26 11:56:14
+   */
   function setTransferData(serviceData, selectedData, state = true) {
     const treeConfig = props.serviceData as TreeConfig;
     // 数组转换成树形结构
@@ -180,8 +189,8 @@
   .content {
     display: flex;
     justify-content: center;
-    // align-items: center !important;
     flex-wrap: nowrap !important;
+    height: 100%;
   }
 
   .content__left,
@@ -194,6 +203,7 @@
     border-radius: 4px;
     padding: 8px;
     box-sizing: border-box;
+    background: #fff;
   }
 
   .content__center {

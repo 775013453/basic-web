@@ -17,6 +17,22 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'table',
         component: () => import('@/views/Table.vue')
+      },
+      {
+        path: 'noFound',
+        component: () => import('@/views/NotFound.vue')
+      },
+      {
+        path: 'formTree',
+        component: () => import('@/views/FormTree.vue')
+      },
+      {
+        path: 'dagMap',
+        component: () => import('@/views/DagMap.vue')
+      },
+      {
+        path: 'transferInput',
+        component: () => import('@/views/TransferInput.vue')
       }
     ]
   },

@@ -1,14 +1,14 @@
+import App from '@/App.vue';
+import { commonFunc } from '@/components/utils/common-func';
+import { vueThis } from '@/components/utils/http-service';
+import router from '@/router';
+import '@/scss/_main.scss';
+import { SYSTEM_CONFIG } from '@/utils/system-config';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import zhCN from 'element-plus/dist/locale/zh-cn.mjs';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
-import App from './App.vue';
-import router from './router';
-import './scss/_main.scss';
-import { commonFunc } from './utils/common-func';
-import { vueThis } from './utils/send-http';
-import { SYSTEM_CONFIG } from './utils/system-config';
 
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
@@ -20,7 +20,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(pinia);
 app.use(router);
 app.use(ElementPlus, { locale: zhCN });
-vueThis(app);
+vueThis(app); // 设置vue全局变量
 app.config.globalProperties['$uuid'] = commonFunc.uuid;
 app.config.globalProperties['$dictSwitch'] = commonFunc.dictSwitch;
 document.title = SYSTEM_CONFIG.systemName;

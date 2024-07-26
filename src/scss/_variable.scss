@@ -1,22 +1,40 @@
 /**
- * description：scss文件定义的变量
+ * description：scss文件定义的全局变量
  * organization：self
  * author: almostSir
  * date：2024-07-24 15:15:12
  */
 
-$theme-bg-color: #fcfcfc; // 主题背景颜色
-$theme-bg-img: url("../assets/img/home.png"); // 主题背景图片
+$white: #fcfcfc; // 白色背景
+$black: #2c2c2c; // 黑色背景
 
+// 总体颜色配置
+$theme-bg-color: $white; // 主题背景颜色
+$theme-bg-img: url("@/assets/img/bg.png"); // 主题背景图片
 $theme-text-size: 16px; // 文字大小
-$theme-text-color: rgba(0, 0, 0, 0.8); // 文字颜色
+$theme-text-color: $black; // 文字颜色
 
-$theme-btn-bg: rgb(22, 119, 255); // 按钮背景颜色
-$theme-btn-color: rgb(255, 255, 255); // 按钮文字颜色
+$theme-btn-bg: #409eff; // 按钮背景颜色
+$theme-btn-color: $white; // 按钮文字颜色
 
-$theme-dialog-bg: rgba(255, 255, 255, 1); // 模态框背景颜色
-$theme-dialog-text-color: rgb(255, 255, 255); // 模态框文字颜色
-$theme-dialog-header-bg: rgba(255, 255, 255, 1); // 模态框头部背景颜色
-$theme-dialog-header-color: rgba(0, 0, 0, 0.8); // 模态框头部文字颜色
+$theme-dialog-header-bg: $theme-bg-color; // 模态框头部背景颜色
+$theme-dialog-header-color: $theme-text-color; // 模态框头部文字颜色
+$theme-dialog-bg: $theme-bg-color; // 模态框背景颜色
+$theme-dialog-text-color: $theme-text-color; // 模态框文字颜色
+
+$theme-table-header-bg: $theme-bg-color; // 表格头部背景颜色
+$theme-table-header-color: $theme-text-color; // 表格头部文字颜色
+$theme-table-bg: $theme-bg-color; // 表格背景颜色
+$theme-table-text-color: $theme-text-color; // 表格文字颜色
+
+$theme-header-height: 54px; // 头部高度
+$theme-header-bg: $theme-bg-color; // 头部背景色
+$theme-header-text-color: $theme-text-color; // 头部文字颜色
 
 $scrollbar-thumb: #00a98d; // 滚动条滑块颜色（webkit内核浏览器有效）
+
+$home-version-height: 52px; // 首页系统版本高度
+$home-version-bg: #f6f6f6; // 首页系统版本背景颜色
+$home-version-text-color: $theme-text-color; // 首页系统版本文本颜色
+
+$menu-item-height: 48px; // 菜单项高度
