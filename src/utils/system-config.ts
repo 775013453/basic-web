@@ -5,7 +5,7 @@
  * date：2024-07-17 17:36:16
  */
 
-import { commonFunc } from '@/components/utils/common-func';
+import { COMMON_FUNC } from '@/components/utils/common-func';
 
 export const SYSTEM_CONFIG = {
   systemName: '',
@@ -15,7 +15,7 @@ export const SYSTEM_CONFIG = {
 
 // 系统基本的URI路径配置
 let BASE_URL = import.meta.env.VITE_APP_BASE_API;
-commonFunc.ajaxRequest({
+COMMON_FUNC.ajaxRequest({
   url: './json/server-ip.json',
   method: 'GET',
   isAsync: false,

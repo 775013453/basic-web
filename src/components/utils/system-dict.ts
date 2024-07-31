@@ -5,7 +5,7 @@
  * date：2024-07-17 15:38:41
  */
 
-export let systemDict: DObject = {
+export let SYSTEM_DICT: DObject = {
   // 性别
   gender: [
     { label: '男性', value: '1' },
@@ -30,5 +30,5 @@ export let systemDict: DObject = {
  * date：2024-07-26 10:28:49
  */
 export function updateDict(data: DObject) {
-  systemDict = data;
+  SYSTEM_DICT = data;
 }

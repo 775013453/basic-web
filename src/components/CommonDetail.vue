@@ -12,7 +12,7 @@
         >
           <div class="detail-text">{{ item.split('|[dict]')[0] }}：</div>
           <div class="detail-value">
-            {{ (props.detailData[k] && commonFunc.dictSwitch(props.detailData[k], item.split('|[dict]')[1])) || '' }}
+            {{ (props.detailData[k] && COMMON_FUNC.dictSwitch(props.detailData[k], item.split('|[dict]')[1])) || '' }}
           </div>
         </div>
         <div
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { commonFunc } from './utils/common-func';
+  import { COMMON_FUNC } from './utils/common-func';
 
   /**
    * description：公共详情

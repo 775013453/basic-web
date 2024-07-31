@@ -42,11 +42,11 @@
 </template>
 
 <script lang="ts" setup>
-  import { commonFunc } from '@/components/utils/common-func';
-  import { loginInfo } from '@/config/login-config';
+  import { COMMON_FUNC } from '@/components/utils/common-func';
+  import { LOGIN_INFO } from '@/config/login-config';
 
-  const tempMenus = commonFunc.arrayAssembleTree({
-    data: loginInfo.datas as Array<TNode>,
+  const tempMenus = COMMON_FUNC.arrayAssembleTree({
+    data: LOGIN_INFO.datas as Array<TNode>,
     field: 'seq',
     parentField: 'parentSeq'
   });

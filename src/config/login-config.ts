@@ -6,7 +6,7 @@
  */
 
 // icon参考地址：https://element-plus.org/zh-CN/component/icon.html#icon-collection
-export const loginInfo = {
+export const LOGIN_INFO = {
   accessToken: 'abcd123456789',
   baseAccountQueryVo: {
     accountName: '超级管理员'
@@ -57,6 +57,14 @@ export const loginInfo = {
       seq: 6,
       parentSeq: 1,
       url: '/home/transferInput'
+    },
+    {
+      id: 7,
+      label: '甘特图',
+      icon: 'Memo',
+      seq: 7,
+      parentSeq: 1,
+      url: '/home/ganttChartExam'
     }
   ]
 };

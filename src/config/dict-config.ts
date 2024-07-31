@@ -5,7 +5,7 @@
  * date：2024-07-17 18:07:26
  */
 
-import { systemDict } from '@/components/utils/system-dict';
+import { SYSTEM_DICT } from '@/components/utils/system-dict';
 import { FormRules } from 'element-plus';
 
 export const TB_HEADER = [
@@ -35,7 +35,7 @@ export const TB_FORM: Array<FormItem> = [
     label: '状态',
     prop: 'status',
     placeholder: '请选择状态',
-    options: systemDict.valid,
+    options: SYSTEM_DICT.valid,
     labelWidth: '50px'
   }
 ];
@@ -74,7 +74,7 @@ export const EDIT_FORM: Array<FormItem> = [
     label: '是否有效',
     prop: 'status',
     placeholder: '请选择状态',
-    options: systemDict.valid,
+    options: SYSTEM_DICT.valid,
     labelWidth: '80px'
   }
 ];

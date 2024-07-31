@@ -5,7 +5,7 @@
  * date：2024-07-17 18:05:40
  */
 
-import Home from '@/views/Home.vue';
+import Home from '@/example/Home.vue';
 import * as VueRouter from 'vue-router';
 import { RouteRecordRaw } from 'vue-router';
 
@@ -16,29 +16,33 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'table',
-        component: () => import('@/views/Table.vue')
+        component: () => import('@/example/Table.vue')
       },
       {
         path: 'noFound',
-        component: () => import('@/views/NotFound.vue')
+        component: () => import('@/example/NotFound.vue')
       },
       {
         path: 'formTree',
-        component: () => import('@/views/FormTree.vue')
+        component: () => import('@/example/FormTree.vue')
       },
       {
         path: 'dagMap',
-        component: () => import('@/views/DagMap.vue')
+        component: () => import('@/example/DagMap.vue')
       },
       {
         path: 'transferInput',
-        component: () => import('@/views/TransferInput.vue')
+        component: () => import('@/example/TransferInput.vue')
+      },
+      {
+        path: 'ganttChartExam',
+        component: () => import('@/example/GanttChartExam.vue')
       }
     ]
   },
   {
     path: '/:catchAll(.*)',
-    component: () => import('@/views/NotFound.vue') // 配置404页面
+    component: () => import('@/example/NotFound.vue') // 配置404页面
   }
 ];
 

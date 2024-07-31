@@ -182,7 +182,7 @@
         >
           <template #default="scope">
             <span>
-              {{ commonFunc.dictSwitch(scope.row[item.prop], item.dictType || '') }}
+              {{ COMMON_FUNC.dictSwitch(scope.row[item.prop], item.dictType || '') }}
             </span>
           </template>
         </el-table-column>
@@ -244,7 +244,7 @@
 <script lang="ts" setup>
   import { FormInstance } from 'element-plus';
   import { ref } from 'vue';
-  import { commonFunc } from './utils/common-func';
+  import { COMMON_FUNC } from './utils/common-func';
   import { axiosRequest } from './utils/http-service';
 
   /**

@@ -12,13 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-  import { loginInfo } from '@/config/login-config';
+  import { LOGIN_INFO } from '@/config/login-config';
 
   let courseData = [];
   const selectedData = ref([]);
   const rootId = 1; // 根节点ID与field对于字段比较，如果没有则不设置rootId
   const serviceData: TreeConfig = {
-    data: loginInfo.datas as TNode[],
+    data: LOGIN_INFO.datas as TNode[],
     value: rootId,
     field: 'seq',
     parentField: 'parentSeq'

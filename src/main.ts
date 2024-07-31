@@ -1,5 +1,5 @@
 import App from '@/App.vue';
-import { commonFunc } from '@/components/utils/common-func';
+import { COMMON_FUNC } from '@/components/utils/common-func';
 import { vueThis } from '@/components/utils/http-service';
 import router from '@/router';
 import '@/scss/_main.scss';
@@ -21,7 +21,7 @@ app.use(pinia);
 app.use(router);
 app.use(ElementPlus, { locale: zhCN });
 vueThis(app); // 设置vue全局变量
-app.config.globalProperties['$uuid'] = commonFunc.uuid;
-app.config.globalProperties['$dictSwitch'] = commonFunc.dictSwitch;
+app.config.globalProperties['$uuid'] = COMMON_FUNC.uuid;
+app.config.globalProperties['$dictSwitch'] = COMMON_FUNC.dictSwitch;
 document.title = SYSTEM_CONFIG.systemName;
 app.mount('#app'); // 挂载放于最后

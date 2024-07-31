@@ -54,7 +54,7 @@
 <script lang="ts" setup>
   import { ElTree } from 'element-plus';
   import { TreeNodeData } from 'element-plus/lib/components/tree-v2/src/types.js';
-  import { commonFunc } from './utils/common-func';
+  import { COMMON_FUNC } from './utils/common-func';
 
   const emit = defineEmits(['update:selectedData']);
   const props = defineProps({
@@ -119,7 +119,7 @@
         }
       });
     }
-    const data = commonFunc.arrayAssembleTree(treeConfig);
+    const data = COMMON_FUNC.arrayAssembleTree(treeConfig);
     treeData.value = [data];
     emit('update:selectedData', listData.value);
   }
@@ -153,7 +153,7 @@
         });
     }
     setTreeDisabled(props.serviceData, selectedListData.value);
-    const data = commonFunc.arrayAssembleTree(treeConfig);
+    const data = COMMON_FUNC.arrayAssembleTree(treeConfig);
     treeData.value = [data];
     // 移除数据后置空选中项，防止重复移除添加到原树形结构中
     selectedListData.value = [];
@@ -179,7 +179,7 @@
         }
       }
     }
-    const data = commonFunc.arrayAssembleTree(treeConfig, state);
+    const data = COMMON_FUNC.arrayAssembleTree(treeConfig, state);
     treeData.value = [data];
     listData.value = selectedData;
   }

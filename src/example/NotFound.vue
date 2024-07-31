@@ -19,12 +19,12 @@
     section {
       text-align: center;
       img {
-        width: 360px;
+        width: 240px;
       }
       h1 {
         width: 100%;
         text-align: center;
-        font-size: 2em;
+        font-size: 1.5em;
       }
     }
   }

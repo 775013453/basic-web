@@ -5,9 +5,9 @@
  * date：2024-07-17 15:35:03
  */
 
-import { systemDict } from './system-dict';
+import { SYSTEM_DICT } from './system-dict';
 
-export const commonFunc = {
+export const COMMON_FUNC = {
   // 算法：将数组类型组装成树形结构数据,childrenNullDisabled（子元素为空不可选设置,true时，不存在子元素不能选）
   arrayAssembleTree(treeData: TreeConfig, childrenNullDisabled?: boolean): TNode {
     // 默认初始根目录，一般用于初始构建根目录使用，如果设置了value，则以value匹配的值作为根目录
@@ -59,7 +59,7 @@ export const commonFunc = {
   // 全局字典value转换label过滤器
   dictSwitch(val: Array<string | number> | string, type: string): string | number {
     const value: Array<string> = [];
-    const list: Array<DNode> = systemDict[type];
+    const list: Array<DNode> = SYSTEM_DICT[type];
     if (val instanceof Array) {
       val = val.join(',');
     }
