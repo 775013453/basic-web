@@ -5,16 +5,7 @@
  * date：2024-07-17 17:54:43
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let vm: any; // vue全局变量
-/**
- * description：设置vue全局变量，主要供loading,message等组件使用
- * author: almostSir
- * date：2024-07-26 11:07:09
- */
-export const vueThis = (_this) => {
-  vm = _this.config.globalProperties;
-};
+import { ElLoading } from 'element-plus';
 
 let whitelist = ['login']; // 接口白名单列表，即无论token是否存在均可以调用接口
 
@@ -66,12 +57,7 @@ function paramsJoin(url: string, params): string {
 function request(data: RequestOptions): Promise<any> {
   const token = sessionStorage.getItem('_sid');
   if (token || testWhitelist(data.url)) {
-    const loading = vm.$loading({
-      lock: true,
-      text: 'Loading',
-      spinner: 'el-icon-loading',
-      background: 'rgba(0, 0, 0, 0.5)'
-    });
+    const loadingInstance = ElLoading.service({ fullscreen: true });
     let axiosParams = {};
     if (data.method === 'GET') {
       if (data.params) {
@@ -103,56 +89,36 @@ function request(data: RequestOptions): Promise<any> {
         .then((res) => {
           resolve(res);
           const t = setTimeout(() => {
-            if (loading.visible) {
-              loading.close();
-            }
+            loadingInstance.close();
             clearTimeout(t);
           }, 500);
         })
         .catch((error) => {
           // 处理接口外部异常，包括无网络，http协议内status为非200的所有情况
           const data = error?.response?.data;
-          if (vm) {
-            vm.$message({
-              showClose: true,
-              message: data.msg || data.error || '服务异常，请联系网站管理员！',
-              type: 'error',
-              duration: 1500,
-              onClose: () => {
-                if (data.opCode === '00002') {
-                  sessionStorage.clear();
-                  vm.$router.push(`${location.host}${location.pathname}`);
-                }
-              }
-            });
-          } else {
-            alert(data.msg || data.error || '服务异常，请联系网站管理员！');
-          }
+          ElMessageBox.alert(data.msg || data.error || '服务异常，请联系网站管理员！', '错误', {
+            confirmButtonText: '关闭',
+            callback: () => {
+              sessionStorage.clear();
+              window.open('/', '_self');
+            }
+          });
           reject(data);
           const t = setTimeout(() => {
-            if (loading.visible) {
-              loading.close();
-            }
+            loadingInstance.close();
             clearTimeout(t);
           }, 500);
         });
     });
   } else {
-    if (vm) {
-      vm.$message({
-        showClose: true,
-        message: '抱歉，账户已失效，请重新登录！',
-        type: 'error',
-        duration: 1500,
-        onClose: () => {
-          sessionStorage.clear();
-          vm.$router.push(`${location.host}${location.pathname}`);
-        }
-      });
-    } else {
-      alert('抱歉，账户已失效，请重新登录！');
-      window.open(`${location.host}${location.pathname}`);
-    }
+    ElMessageBox.alert('抱歉，账户已失效，请重新登录！', '提示', {
+      confirmButtonText: '退出',
+      callback: () => {
+        sessionStorage.clear();
+        window.open('/', '_self');
+      }
+    });
+
     return new Promise((resolve) => {
       resolve('抱歉，账户已失效，请重新登录！');
     });
