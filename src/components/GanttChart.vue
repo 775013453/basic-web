@@ -14,7 +14,7 @@
         >
           <div
             v-for="(item, index) in stableColumn"
-            :key="index"
+            :key="'gantt-' + index"
             :style="{ width: item.width, 'text-align': item.align }"
           >
             {{ item.label }}
@@ -24,7 +24,7 @@
           <template v-for="(item, index) in timeLine">
             <span
               v-if="index % 10 === 0"
-              :key="index"
+              :key="'ganttTime-' + index"
               style="flex: 0 0 60px"
             >
               {{ showTime(item) }}
@@ -38,7 +38,7 @@
       >
         <div
           v-for="item in calcParams(timeLine.length)"
-          :key="item"
+          :key="'ganttTimeline-' + item"
         ></div>
         <el-tooltip
           :content="currentTime"
@@ -63,7 +63,7 @@
           >
             <div
               v-for="(s, index) in stableColumn"
-              :key="index"
+              :key="'ganttAtr-' + index"
               class="row-abstract"
               :style="{ width: s.width, 'text-align': s.align }"
             >

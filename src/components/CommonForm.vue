@@ -10,7 +10,7 @@
     >
       <el-form-item
         v-for="(item, index) in props.formList"
-        :key="index"
+        :key="'formItem-' + index"
         size="default"
         :label="item.label"
         :label-width="item.labelWidth || '80px'"
@@ -50,7 +50,7 @@
         >
           <el-option
             v-for="(el, i) in item.options"
-            :key="i"
+            :key="'selectOpt-' + i"
             filterable
             clearable
             :label="el.label"

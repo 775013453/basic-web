@@ -10,7 +10,7 @@
       >
         <el-form-item
           v-for="(item, index) in props.formList"
-          :key="index"
+          :key="'tbFormItem-' + index"
           size="default"
           :label="item.label"
           :label-width="item.labelWidth || '80px'"
@@ -50,7 +50,7 @@
           >
             <el-option
               v-for="(el, i) in item.options"
-              :key="i"
+              :key="'tbSelectOpt-' + i"
               filterable
               clearable
               :label="el.label"
@@ -144,7 +144,7 @@
       <div class="tab-right-content">
         <el-button
           v-for="(item, index) in innerTopBtns"
-          :key="index"
+          :key="'tbBtn-' + index"
           :color="item.color"
           type="primary"
           :icon="item.icon"

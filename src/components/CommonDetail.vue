@@ -3,7 +3,7 @@
     <el-row>
       <el-col
         v-for="(item, k) in props.detailConfig"
-        :key="k"
+        :key="'detail-' + k"
         :span="24"
       >
         <div
