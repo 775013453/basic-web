@@ -65,7 +65,7 @@
   /**
    * description：单选/多选树形结构输入框
    * author: almostSir
-   * date：2024-07-17 18:46:56
+   * date：2024-10-31 18:46:56
    */
 
   const emit = defineEmits(['update:selectedNodes']);
@@ -148,7 +148,7 @@
   /**
    * description：更新选中节点
    * author: almostSir
-   * date：2024-07-26 15:05:52
+   * date：2024-10-31 15:05:52
    */
   function updateSelectNode() {
     selectedKeys.value = [];
@@ -160,7 +160,7 @@
   /**
    * description：过滤树形节点
    * author: almostSir
-   * date：2024-07-26 11:54:10
+   * date：2024-10-31 11:54:10
    */
   function filterNode(value, data) {
     if (!value) return true;
@@ -170,7 +170,7 @@
   /**
    * description：更新选中树形节点
    * author: almostSir
-   * date：2024-07-26 11:54:24
+   * date：2024-10-31 11:54:24
    */
   function sendSelectedNode() {
     let selectedNodes;
@@ -189,7 +189,7 @@
   /**
    * description：设置选中节点
    * author: almostSir
-   * date：2024-07-26 11:54:43
+   * date：2024-10-31 11:54:43
    */
   function setSelectedNode() {
     selectedNames.value = [];
@@ -201,7 +201,7 @@
   /**
    * description：重新计算设计树形下拉位置，防止被遮挡
    * author: almostSir
-   * date：2024-07-26 13:32:01
+   * date：2024-10-31 13:32:01
    */
   function treePos(e) {
     setTimeout(() => {

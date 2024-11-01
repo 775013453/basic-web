@@ -2,7 +2,7 @@
  * description：axios请求封装及接口拦截处理
  * organization：self
  * author: almostSir
- * date：2024-07-17 17:54:43
+ * date：2024-10-31 17:54:43
  */
 
 import { ElLoading } from 'element-plus';
@@ -12,7 +12,7 @@ let whitelist = ['login']; // 接口白名单列表，即无论token是否存在
 /**
  * description：设置接口白名单，即无论token是否存在均可以调用接口
  * author: almostSir
- * date：2024-07-26 11:08:03
+ * date：2024-10-31 11:08:03
  */
 export function setWhitelist(data: Array<string>) {
   whitelist = data;
@@ -21,7 +21,7 @@ export function setWhitelist(data: Array<string>) {
 /**
  * description：根据url检测是否在白名单内，模糊检测
  * author: almostSir
- * date：2024-07-26 11:08:53
+ * date：2024-10-31 11:08:53
  */
 function testWhitelist(url: string) {
   const state = whitelist.some((e) => {
@@ -35,7 +35,7 @@ function testWhitelist(url: string) {
 /**
  * description：GET请求参数拼接处理
  * author: almostSir
- * date：2024-07-26 10:45:32
+ * date：2024-10-31 10:45:32
  */
 function paramsJoin(url: string, params): string {
   for (const k of Object.keys(params)) {
@@ -51,14 +51,14 @@ function paramsJoin(url: string, params): string {
 /**
  * description：发送请求，data参数：{url, method, params},params参数为{key:value}
  * author: almostSir
- * date：2024-07-26 10:46:03
+ * date：2024-10-31 10:46:03
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function request(data: RequestOptions): Promise<any> {
   const token = sessionStorage.getItem('_sid');
   if (token || testWhitelist(data.url)) {
     const loadingInstance = ElLoading.service({ fullscreen: true });
-    let axiosParams = {};
+    let axiosParams: ReqParams;
     if (data.method === 'GET') {
       if (data.params) {
         data.url = paramsJoin(data.url, data.params);
@@ -66,19 +66,25 @@ function request(data: RequestOptions): Promise<any> {
       axiosParams = {
         method: data.method,
         url: data.url,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        headers: {}
       };
+      if (token) {
+        axiosParams.headers!.Authorization = `Bearer ${token}`;
+      } else {
+        delete axiosParams.headers;
+      }
     } else if (data.method === 'POST' || data.method === 'PUT' || data.method === 'DELETE') {
       axiosParams = {
         method: data.method,
         url: data.url,
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        data: data.params
+        data: data.params,
+        headers: {}
       };
+      if (token) {
+        axiosParams.headers!.Authorization = `Bearer ${token}`;
+      } else {
+        delete axiosParams.headers;
+      }
     } else {
       return new Promise((resolve) => {
         resolve('抱歉，请求方法不支持');
@@ -124,5 +130,12 @@ function request(data: RequestOptions): Promise<any> {
     });
   }
 }
+
+type ReqParams = {
+  method: string;
+  url: string;
+  data?: unknown;
+  headers?: { Authorization?: string };
+};
 
 export const axiosRequest = request;

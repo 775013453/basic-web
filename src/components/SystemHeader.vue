@@ -13,6 +13,20 @@
         <strong class="header-left--name">{{ systemName }}</strong>
       </div>
       <div class="header-right">
+        <el-tooltip
+          class="theme-switch"
+          effect="dark"
+          :content="'切换【' + (theme ? '明亮' : '黑暗') + '主题】'"
+          placement="left"
+        >
+          <el-switch
+            v-model="theme"
+            :size="'large'"
+            :inactive-action-icon="'Moon'"
+            :active-action-icon="'Sunny'"
+            @change="switchTheme()"
+          ></el-switch>
+        </el-tooltip>
         <img
           class="header-avatar"
           src="@/assets/img/avatar.png"
@@ -26,8 +40,8 @@
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item
-                v-for="(item, index) in props.menuOptions"
-                :key="index"
+                v-for="(item, index) in menuOptions"
+                :key="'header-' + index"
                 @click="item.clickHandle && item.clickHandle()"
               >
                 {{ item.label }}
@@ -47,26 +61,31 @@
 </template>
 
 <script lang="ts" setup>
-  const props = defineProps({
+  import { useShareStore } from '@/store';
+
+  defineProps({
     systemName: {
       type: String,
       default: '系统名称'
     },
     accountName: {
       type: String,
-      default: '张三'
+      default: 'admin'
     },
     menuOptions: {
-      type: Array<{ [key: string]: unknown }>,
+      type: Array<{ [key: string]: unknown; clickHandle: () => void }>,
       default: []
     }
   });
   const emit = defineEmits(['logoClick', 'exitClick']);
 
+  const shareStore = useShareStore();
+  const theme = computed(() => shareStore.theme);
+
   /**
    * description：头部logo点击处理
    * author: almostSir
-   * date：2024-07-26 16:37:25
+   * date：2024-10-31 16:37:25
    */
   function logoClick() {
     emit('logoClick');
@@ -75,10 +94,19 @@
   /**
    * description：头部退出按钮点击处理
    * author: almostSir
-   * date：2024-07-26 16:38:03
+   * date：2024-10-31 16:38:03
    */
   function exitClick() {
     emit('exitClick');
+  }
+
+  /**
+   * description：切换主题
+   * author: almostSir
+   * date：2024-11-01 09:24:03
+   */
+  function switchTheme() {
+    shareStore.switchTheme();
   }
 </script>
 <style lang="scss" scoped>
@@ -104,8 +132,7 @@
     }
 
     .header-left--logo {
-      width: 42px;
-      border-radius: 50%;
+      width: 124px;
     }
     .header-left--name {
       font-size: 18px;
@@ -114,14 +141,22 @@
     .header-avatar {
       width: 32px;
       border-radius: 50%;
+      margin-left: 16px;
     }
     .header-right--name {
       cursor: pointer;
-      margin: 16px;
+      margin: 4px;
       display: flex;
       align-items: center;
       > strong {
         margin: 4px;
+      }
+      &:focus-visible {
+        outline: none;
+      }
+      &:hover {
+        color: v.$theme-btn-bg;
+        transform: scale(1.1);
       }
     }
   }

@@ -176,7 +176,7 @@
         />
         <el-table-column
           v-for="(item, index) in props.header"
-          :key="index"
+          :key="'td-' + index"
           :label="item.label"
           :width="item.width"
         >
@@ -193,20 +193,24 @@
           class="operate-column"
         >
           <template #default="scope">
-            <span
-              v-for="(item, index) in innerOperations"
-              :key="index"
-              class="operate-item"
+            <template
+              v-for="(item, i) in innerOperations"
+              :key="'operate-' + i"
             >
-              <el-button
-                :color="item.color"
-                link
-                :icon="item.icon"
-                @click="item.handler(scope.row)"
+              <span
+                v-if="item.hiddenHandle ? item.hiddenHandle(scope.row) : true"
+                class="operate-item"
               >
-                {{ item.name }}
-              </el-button>
-            </span>
+                <el-button
+                  :color="item.color"
+                  link
+                  :icon="item.icon"
+                  @click="item.handler(scope.row)"
+                >
+                  {{ item.name }}
+                </el-button>
+              </span>
+            </template>
           </template>
         </el-table-column>
       </el-table>
@@ -250,7 +254,7 @@
   /**
    * description：公共表格
    * author: almostSir
-   * date：2024-07-17 18:47:31
+   * date：2024-10-31 18:47:31
    */
 
   /**
@@ -464,7 +468,7 @@
   /**
    * description：请求数据处理
    * author: almostSir
-   * date：2024-07-26 11:53:42
+   * date：2024-10-31 11:53:42
    */
   function searchData(params = { pageNo: 1, pageSize: 10 }) {
     pageInfo.value.currentPage = params.pageNo;
@@ -492,7 +496,7 @@
   /**
    * description：每页数量发生改变处理
    * author: almostSir
-   * date：2024-07-26 11:51:37
+   * date：2024-10-31 11:51:37
    */
   function handleSizeChange(val) {
     if (pageInfo.value.currentPage * val > pageInfo.value.total) {
@@ -508,7 +512,7 @@
   /**
    * description：页码改变处理
    * author: almostSir
-   * date：2024-07-26 11:51:50
+   * date：2024-10-31 11:51:50
    */
   function handleCurrentChange(val) {
     searchData({
@@ -520,7 +524,7 @@
   /**
    * description：多选处理
    * author: almostSir
-   * date：2024-07-26 11:52:03
+   * date：2024-10-31 11:52:03
    */
   function handleSelectionChange(val) {
     selectedData.value = val;
@@ -529,7 +533,7 @@
   /**
    * description：搜索处理
    * author: almostSir
-   * date：2024-07-26 11:52:28
+   * date：2024-10-31 11:52:28
    */
   function handleQuery() {
     pageInfo.value.currentPage = 1;
@@ -542,7 +546,7 @@
   /**
    * description：重置处理
    * author: almostSir
-   * date：2024-07-26 11:52:45
+   * date：2024-10-31 11:52:45
    */
   function resetQuery() {
     formRef?.value?.resetFields();
@@ -555,7 +559,7 @@
   /**
    * description：计算总页数
    * author: almostSir
-   * date：2024-07-26 11:53:00
+   * date：2024-10-31 11:53:00
    */
   function totalPage(total: number, size: number) {
     // 计算总页数
@@ -572,7 +576,7 @@
   /**
    * description：按钮权限校验控制
    * author: almostSir
-   * date：2024-07-26 11:53:19
+   * date：2024-10-31 11:53:19
    */
   function btnAuthHandle(topBtns: Array<OperateBtn>, operations: Array<OperateBtn>) {
     innerTopBtns.value = topBtns;
@@ -711,7 +715,8 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      padding-top: 8px;
+      padding: 6px;
+      background: #fff;
     }
 
     .el-pagination__jump {

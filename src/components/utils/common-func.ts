@@ -2,7 +2,7 @@
  * description：常用的公共方法
  * organization：self
  * author: almostSir
- * date：2024-07-17 15:35:03
+ * date：2024-10-31 15:35:03
  */
 
 import { SYSTEM_DICT } from './system-dict';

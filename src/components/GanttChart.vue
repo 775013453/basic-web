@@ -210,7 +210,7 @@
   /**
    * description：根据时间拆分为以10单位的分段数，len为时间线数组长度
    * author: almostSir
-   * date：2024-07-30 15:09:41
+   * date：2024-10-31 15:09:41
    */
   function calcParams(len: number): number {
     return Math.ceil(len / 10);
@@ -219,7 +219,7 @@
   /**
    * description：与显示时间范围比较，超出时间不显示，time为指定时间
    * author: almostSir
-   * date：2024-07-30 18:45:02
+   * date：2024-10-31 18:45:02
    */
   function showTime(time: string): string {
     const s = dayjs(time).diff(props.showEndDateTime, props.timeType) <= 0;
@@ -233,7 +233,7 @@
   /**
    * description：滚动到指定位置，posX为横向滚动距离，posY为纵向滚动距离
    * author: almostSir
-   * date：2024-07-31 09:12:28
+   * date：2024-10-31 09:12:28
    */
   function scrollPos(posX: number, posY: number = 0): void {
     if (ganttRef.value) {
@@ -245,7 +245,7 @@
   /**
    * description：自动纵向滚动控制，intervalTime为滚动间隔时间,times为滚动间隔元素个数,startPosY为开始位置
    * author: almostSir
-   * date：2024-07-31 09:52:52
+   * date：2024-10-31 09:52:52
    */
   function autoScrollY(intervalTime = 3000, times = 1, startPosY = 0): NodeJS.Timeout {
     let posY = startPosY;

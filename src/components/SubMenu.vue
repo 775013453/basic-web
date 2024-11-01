@@ -45,7 +45,7 @@
   /**
    * description：icon截取处理
    * author: almostSir
-   * date：2024-07-26 11:55:51
+   * date：2024-10-31 11:55:51
    */
   function switchIcon(icon: string) {
     if (icon) {

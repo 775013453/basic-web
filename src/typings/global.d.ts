@@ -2,7 +2,7 @@
  * description：自定义变量类型声明文件
  * organization：self
  * author: almostSir
- * date：2024-07-17 14:31:29
+ * date：2024-10-31 14:31:29
  */
 
 export {};
@@ -87,6 +87,7 @@ declare global {
     handler: (data) => void; // 点击按钮回调函数
     color?: string; // 按钮颜色
     auth?: string | number; // 按钮权限字符串
+    hiddenHandle?: (row) => boolean; // 按钮是否隐藏控制，主要用于单行针对状态动态控制隐藏/显示，默认显示,返回值为true则显示
   };
 
   // 分页参数配置

@@ -94,7 +94,7 @@
   /**
    * description：添加数据
    * author: almostSir
-   * date：2024-07-17 18:37:33
+   * date：2024-10-31 18:37:33
    */
   function addData() {
     const selectedTreeData = treeRef.value?.getCheckedNodes() || [];
@@ -127,7 +127,7 @@
   /**
    * description：移除数据
    * author: almostSir
-   * date：2024-07-17 18:37:17
+   * date：2024-10-31 18:37:17
    */
   function removeData() {
     const treeConfig = props.serviceData as TreeConfig;
@@ -163,7 +163,7 @@
   /**
    * description：设置传输数据
    * author: almostSir
-   * date：2024-07-26 11:56:14
+   * date：2024-10-31 11:56:14
    */
   function setTransferData(serviceData, selectedData, state = true) {
     const treeConfig = props.serviceData as TreeConfig;

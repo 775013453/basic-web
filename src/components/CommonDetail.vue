@@ -53,7 +53,7 @@
   /**
    * description：公共详情
    * author: almostSir
-   * date：2024-07-17 18:49:27
+   * date：2024-10-31 18:49:27
    */
 
   const props = defineProps({
@@ -77,7 +77,7 @@
   /**
    * description：关闭按钮处理方法
    * author: almostSir
-   * date：2024-07-26 11:50:20
+   * date：2024-10-31 11:50:20
    */
   function handleReturn() {
     emit('detailReturn');
