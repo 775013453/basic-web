@@ -104,21 +104,21 @@ export default defineConfig(({ command, mode }) => {
       })
     ],
     server: {
-      host: '192.168.66.66',
+      host: '127.0.0.1',
       port: 8080, // 开发服务器端口
       strictPort: true, // 若端口已被占用则会直接退出
       open: true, // 启动时自动在浏览器中打开应用程序
       cors: true, // 启用并允许任何源cls
       hmr: true, // 开启热更新
       logLevel: 'info', // 调整控制台输出的级别,'info' | 'warn' | 'error' | 'silent'
-      origin: '', // 定义开发调试阶段生成的origin
+      origin: '' // 定义开发调试阶段生成的origin
       // 开发服务器配置自定义代理规则
-      proxy: {
-        '/service/': {
-          target: 'http://192.168.111.95:8120',
-          changeOrigin: false
-        }
-      }
+      // proxy: {
+      //   '/service/': {
+      //     target: 'http://192.168.66.66:8080',
+      //     changeOrigin: false
+      //   }
+      // }
     }
   };
 });
