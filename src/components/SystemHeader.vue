@@ -132,7 +132,7 @@
     }
 
     .header-left--logo {
-      width: 124px;
+      width: 42px;
     }
     .header-left--name {
       font-size: 18px;

@@ -30,6 +30,107 @@ body {
   box-sizing: border-box;
 }
 
+.btns {
+  text-align: center;
+}
+
+.el-button.is-link:not(.is-disabled):hover {
+  color: #fff;
+}
+
+// 黑色主题
+$dark-bg: #444 !important; // 背景 
+$dark-font-color: #fff !important; // 字体、边框
+$dark-tb-switch-bg: #999 !important; // 表格开关背景颜色
+$dark-tb-switch-open-bg: #409eff !important; // 表格开关打开背景颜色
+
+.dark-theme {
+  background: $dark-bg;
+  color: $dark-font-color;
+
+  .header-right--name,
+  .el-drawer__header,
+  .el-dialog__close {
+    color: $dark-font-color;
+  }
+
+  .el-switch__core,
+  .el-form-item__label,
+  .header,
+  .footer,
+  .el-dialog,
+  .el-dialog__title,
+  .content .system-menu,
+  .el-drawer {
+    @extend .dark-theme
+  }
+
+  .header {
+    border-bottom: 1px solid #666 !important;
+  }
+
+  .el-switch__core {
+    background: $dark-font-color;
+    border: 1px solid $dark-font-color;
+
+    .el-switch__action {
+      background: $dark-bg;
+
+      .el-icon {
+        color: $dark-font-color;
+      }
+    }
+  }
+
+  .el-table__row .el-switch:not(.is-checked) .el-switch__core {
+    background: $dark-tb-switch-bg;
+    border: 1px solid $dark-tb-switch-bg;
+
+    .el-switch__action {
+      background: $dark-font-color;
+
+      .el-icon {
+        color: $dark-font-color;
+      }
+    }
+  }
+
+  .el-table__row .el-switch .el-switch__core {
+    background: $dark-tb-switch-open-bg;
+    border: 1px solid $dark-tb-switch-open-bg;
+
+    .el-switch__action {
+      background: $dark-font-color;
+
+      .el-icon {
+        color: $dark-font-color;
+      }
+    }
+  }
+
+  .welcome {
+    color: $dark-bg;
+  }
+
+  .login-form {
+    box-shadow: 0 0 8px 1px $dark-bg;
+  }
+}
+
+body:has(.dark-theme) {
+  .el-message-box {
+    background: $dark-bg;
+    color: $dark-font-color;
+
+    .el-message-box__title,
+    .el-message-box__content,
+    .el-message-box__close {
+      color: $dark-font-color;
+    }
+  }
+}
+
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

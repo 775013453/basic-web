@@ -14,13 +14,13 @@ export let SYSTEM_DICT: DObject = {
   ],
   // 是否有效
   valid: [
-    { label: '有效', value: '1' },
-    { label: '无效', value: '0' }
+    { label: '有效', value: 1 },
+    { label: '无效', value: 0 }
   ],
   // 是否有效
   whether: [
-    { label: '是', value: '1' },
-    { label: '否', value: '0' }
+    { label: '是', value: 1 },
+    { label: '否', value: 0 }
   ]
 };
 

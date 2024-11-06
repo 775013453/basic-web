@@ -71,7 +71,7 @@ export const COMMON_FUNC = {
         if (valArr.length > 1) {
           valArr.forEach((m: string) => {
             list.some((e) => {
-              if (e.value === m && m !== '99') {
+              if (e.value == m && m != '99') {
                 value.push(e.label);
                 return true;
               }
@@ -79,7 +79,7 @@ export const COMMON_FUNC = {
           });
         } else {
           list.some((e) => {
-            if (e.value === valArr[0]) {
+            if (e.value == valArr[0]) {
               value.push(e.label);
               return true;
             }

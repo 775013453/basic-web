@@ -140,6 +140,10 @@
             重置
           </el-button>
         </el-form-item>
+        <slot
+          name="operations"
+          :formData="formData"
+        ></slot>
       </el-form>
       <div class="tab-right-content">
         <el-button
@@ -154,7 +158,6 @@
         </el-button>
       </div>
     </div>
-    <slot name="operations"></slot>
     <div
       v-if="!noData"
       class="table-content"
@@ -181,7 +184,12 @@
           :width="item.width"
         >
           <template #default="scope">
-            <span>
+            <slot
+              v-if="item.type === 'custom'"
+              name="row"
+              :tableData="scope.row"
+            ></slot>
+            <span v-else>
               {{ COMMON_FUNC.dictSwitch(scope.row[item.prop], item.dictType || '') }}
             </span>
           </template>
@@ -193,24 +201,52 @@
           class="operate-column"
         >
           <template #default="scope">
-            <template
-              v-for="(item, i) in innerOperations"
-              :key="'operate-' + i"
+            <span
+              v-for="(item, index) in innerOperations"
+              :key="index"
+              class="operate-item"
+              :class="{ 'operate-dropdown': item.type === 'dropdownBtns' }"
             >
-              <span
-                v-if="item.hiddenHandle ? item.hiddenHandle(scope.row) : true"
-                class="operate-item"
-              >
+              <el-dropdown v-if="item.type === 'dropdownBtns'">
                 <el-button
-                  :color="item.color"
+                  :style="{ color: item.color }"
                   link
                   :icon="item.icon"
-                  @click="item.handler(scope.row)"
                 >
                   {{ item.name }}
                 </el-button>
-              </span>
-            </template>
+                <template #dropdown>
+                  <el-dropdown-menu>
+                    <el-dropdown-item
+                      v-for="(e, i) in item.btns"
+                      :key="i"
+                      :disabled="e.disabled"
+                      @click="e.handler(scope.row)"
+                    >
+                      <span :style="{ color: e.color }">
+                        <el-icon
+                          v-if="e.icon"
+                          :size="16"
+                          :color="e.color"
+                        >
+                          <component :is="e.icon"></component>
+                        </el-icon>
+                        {{ e.name }}
+                      </span>
+                    </el-dropdown-item>
+                  </el-dropdown-menu>
+                </template>
+              </el-dropdown>
+              <el-button
+                v-else
+                :style="{ color: item.color }"
+                link
+                :icon="item.icon"
+                @click="item.handler(scope.row)"
+              >
+                {{ item.name }}
+              </el-button>
+            </span>
           </template>
         </el-table-column>
       </el-table>
@@ -695,7 +731,8 @@
     .operate-item {
       padding: 0 8px;
       border-right: 1px solid #ccc;
-
+      display: inline-flex;
+      align-items: center;
       > button > i,
       span {
         color: #409eff;

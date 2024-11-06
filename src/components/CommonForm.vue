@@ -35,6 +35,7 @@
           :prop="item.prop"
           :disabled="item.disabled"
           :multiple="item.multiple"
+          :allow-create="item.allowCreate"
           clearable
           filterable
           @change="
@@ -128,6 +129,10 @@
       <slot :formData="formData"></slot>
     </el-form>
     <div class="btns">
+      <slot
+        name="btns"
+        :formData="formData"
+      ></slot>
       <el-button
         type="primary"
         :icon="'Close'"

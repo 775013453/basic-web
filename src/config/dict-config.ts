@@ -13,7 +13,7 @@ export const TB_HEADER = [
   { label: '类别编码', prop: 'type' },
   { label: '字典名称', prop: 'name' },
   { label: '字典值', prop: 'value' },
-  { label: '字典状态', prop: 'status', dict: 'valid' },
+  { label: '字典状态', prop: 'status', type: 'custom' },
   { label: '更新日期', prop: 'updateTime' }
 ];
 
@@ -74,6 +74,7 @@ export const EDIT_FORM: Array<FormItem> = [
     label: '是否有效',
     prop: 'status',
     placeholder: '请选择状态',
+    allowCreate: true, // 是否允许新建下拉选项
     options: SYSTEM_DICT.valid,
     labelWidth: '80px'
   }

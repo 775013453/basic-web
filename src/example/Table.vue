@@ -1,5 +1,7 @@
 <template>
+  <!-- 公共组件运用示例 -->
   <div>
+    <!-- common-table组件通过配置 ":openBtnAuth=false"，并且在 topBtns、operations 配置 auth: 'xxx'可控制按钮级别权限 -->
     <common-table
       ref="commonTableRef"
       :header="tbHeader"
@@ -11,7 +13,25 @@
       :theme="theme"
       :otherHeight="54"
       findField="dictQueryVo"
-    ></common-table>
+    >
+      <template #operations>
+        <!-- 自定义,可以自由控制表格查询表单附加功能,使用:#operations="{ formData }",如下:展示查询条件  -->
+        <hr style="width: 100%; border: 1px solid white" />
+      </template>
+      <template #row="{ tableData }">
+        <!-- 自定义,可以自由控制每行每个字段的展示形式,如下:使用开关组件 -->
+        <el-switch
+          v-model="tableData.status"
+          active-value="1"
+          inactive-value="0"
+          @change="
+            (val) => {
+              console.log('执行开关更新操作:', val);
+            }
+          "
+        />
+      </template>
+    </common-table>
     <el-drawer
       v-model="dictFormVisible"
       :title="dialogTitle"
@@ -25,7 +45,26 @@
         :rules="rules"
         @formSubmit="dictFormSubmit"
         @formReturn="dictFormReturn"
-      ></common-form>
+      >
+        <!-- 自定义表单底部内容,可以在表单尾部添加自定义的内容,如下:使用消息提示 -->
+        <template #default="{ formData }">
+          <div style="color: darkseagreen; text-align: left">当前输入的字典名称为: {{ formData.name }}</div>
+        </template>
+        <!-- 自定义底部按钮,可以自由控添加其他按钮,如下:使用开关组件 -->
+        <template #btns="{ formData }">
+          <el-button
+            type="primary"
+            :icon="'Link'"
+            @click="
+              () => {
+                console.log(formData.name);
+              }
+            "
+          >
+            自定义按钮
+          </el-button>
+        </template>
+      </common-form>
     </el-drawer>
     <el-drawer
       v-model="dictDetailVisible"
@@ -50,6 +89,7 @@
   import { useShareStore } from '@/store';
   import { API_URLS } from '@/utils/system-config';
   const shareStore = useShareStore();
+  // openBtnAuth为权限控制开关，false:不控制，true：控制（根据auth字段自动匹配）
 
   let tbHeader = TB_HEADER, // 表头
     tbList = [], // 初始化表格数据
@@ -59,6 +99,7 @@
       {
         name: '新增',
         icon: 'Plus',
+        // auth: 'btn:add-tags',
         handler: handleTbAdd
       }
     ],
@@ -70,17 +111,26 @@
         color: '#409eff',
         handler: handleTbEdit
       },
+      // 更多按钮组
       {
-        name: '详情',
-        icon: 'Reading',
+        type: 'dropdownBtns',
+        name: '更多',
+        icon: 'Connection',
         color: '#409eff',
-        handler: handleTbDetail
-      },
-      {
-        name: '删除',
-        icon: 'Delete',
-        color: '#409eff',
-        handler: handleTbDelete
+        btns: [
+          {
+            name: '删除',
+            icon: 'Delete',
+            color: '#409eff',
+            handler: handleTbDelete
+          },
+          {
+            name: '详情',
+            icon: 'Reading',
+            color: '#409eff',
+            handler: handleTbDetail
+          }
+        ]
       }
     ],
     tbFormList = TB_FORM, // 表格搜索框配置
@@ -117,7 +167,6 @@
   async function handleTbEdit(data) {
     currentDictId = data.dictId;
     rawData.value = JSON.parse(JSON.stringify(data));
-    rawData.value.status += '';
     dialogTitle.value = '字典编辑';
     if (await getDictAll()) {
       dictFormVisible.value = true;

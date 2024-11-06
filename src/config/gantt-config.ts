@@ -6,8 +6,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 11:05',
-        endDate: '2024-07-31 14:00',
+        beginDate: '2024-11-06 11:05',
+        endDate: '2024-11-06 14:00',
         detail: {
           state: 1,
           patientName: '骆文胜',
@@ -18,8 +18,8 @@ export const ROOM_DATA = [
         }
       },
       {
-        beginDate: '2024-07-31 15:00',
-        endDate: '2024-07-31 19:00',
+        beginDate: '2024-11-06 15:00',
+        endDate: '2024-11-06 19:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -37,8 +37,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 10:30',
-        endDate: '2024-07-31 15:00',
+        beginDate: '2024-11-06 10:30',
+        endDate: '2024-11-06 15:00',
         detail: {
           state: 2,
           patientName: '刘岚',
@@ -58,8 +58,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -77,8 +77,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -96,8 +96,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -115,8 +115,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           state: 1,
           patientName: '骆文胜',
@@ -135,8 +135,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -154,8 +154,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -173,8 +173,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -192,8 +192,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -211,8 +211,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',
@@ -230,8 +230,8 @@ export const ROOM_DATA = [
     acceptRate: '25.46%',
     bars: [
       {
-        beginDate: '2024-07-31 12:00',
-        endDate: '2024-07-31 16:00',
+        beginDate: '2024-11-06 12:00',
+        endDate: '2024-11-06 16:00',
         detail: {
           patientName: '骆文胜',
           rank: '01',

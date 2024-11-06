@@ -1,10 +1,18 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    :class="{ 'dark-theme': theme }"
+  >
     <router-view />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { useShareStore } from '@/store';
+
+  const shareStore = useShareStore();
+  const theme = computed(() => shareStore.theme);
+</script>
 
 <style scoped>
   #app {

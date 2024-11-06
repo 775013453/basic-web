@@ -78,6 +78,7 @@ declare global {
       primaryKey: string; // 树节点唯一标识字段
     };
     change?: (data, formData, e) => void; // select类型项改变后的回调函数
+    allowCreate?: boolean; // select类型是否允许创建新项目，默认为false
   };
 
   // 操作按钮配置
@@ -87,7 +88,10 @@ declare global {
     handler: (data) => void; // 点击按钮回调函数
     color?: string; // 按钮颜色
     auth?: string | number; // 按钮权限字符串
+    disabled?: boolean; // 按钮是否可用
     hiddenHandle?: (row) => boolean; // 按钮是否隐藏控制，主要用于单行针对状态动态控制隐藏/显示，默认显示,返回值为true则显示
+    type?: string; // 下拉选项操作按钮，dropdownBtns为下拉更多按钮组
+    btns?: Array<OperateBtn>; //下拉更多按钮组配置
   };
 
   // 分页参数配置
@@ -103,5 +107,6 @@ declare global {
     width?: string | number;
     prop: string;
     dictType?: string;
+    type?: string; // slot配置自定义字段，例如开关组件
   };
 }
