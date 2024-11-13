@@ -201,52 +201,54 @@
           class="operate-column"
         >
           <template #default="scope">
-            <span
-              v-for="(item, index) in innerOperations"
-              :key="index"
-              class="operate-item"
-              :class="{ 'operate-dropdown': item.type === 'dropdownBtns' }"
-            >
-              <el-dropdown v-if="item.type === 'dropdownBtns'">
+            <template v-for="(item, index) in innerOperations">
+              <span
+                v-if="item.hiddenHandle ? item.hiddenHandle(scope.row) : true"
+                :key="index"
+                class="operate-item"
+                :class="{ 'operate-dropdown': item.type === 'dropdownBtns' }"
+              >
+                <el-dropdown v-if="item.type === 'dropdownBtns'">
+                  <el-button
+                    :style="{ color: item.color }"
+                    link
+                    :icon="item.icon"
+                  >
+                    {{ item.name }}
+                  </el-button>
+                  <template #dropdown>
+                    <el-dropdown-menu>
+                      <el-dropdown-item
+                        v-for="(e, i) in item.btns"
+                        :key="i"
+                        :disabled="e.disabled"
+                        @click="e.handler(scope.row)"
+                      >
+                        <span :style="{ color: e.color }">
+                          <el-icon
+                            v-if="e.icon"
+                            :size="16"
+                            :color="e.color"
+                          >
+                            <component :is="e.icon"></component>
+                          </el-icon>
+                          {{ e.name }}
+                        </span>
+                      </el-dropdown-item>
+                    </el-dropdown-menu>
+                  </template>
+                </el-dropdown>
                 <el-button
+                  v-else
                   :style="{ color: item.color }"
                   link
                   :icon="item.icon"
+                  @click="item.handler(scope.row)"
                 >
                   {{ item.name }}
                 </el-button>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item
-                      v-for="(e, i) in item.btns"
-                      :key="i"
-                      :disabled="e.disabled"
-                      @click="e.handler(scope.row)"
-                    >
-                      <span :style="{ color: e.color }">
-                        <el-icon
-                          v-if="e.icon"
-                          :size="16"
-                          :color="e.color"
-                        >
-                          <component :is="e.icon"></component>
-                        </el-icon>
-                        {{ e.name }}
-                      </span>
-                    </el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-              <el-button
-                v-else
-                :style="{ color: item.color }"
-                link
-                :icon="item.icon"
-                @click="item.handler(scope.row)"
-              >
-                {{ item.name }}
-              </el-button>
-            </span>
+              </span>
+            </template>
           </template>
         </el-table-column>
       </el-table>
