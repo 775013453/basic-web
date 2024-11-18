@@ -87,8 +87,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 1. 在src/mock目录下新建mock模拟接口配置（建议按照业务划分），参考dict.mock.ts文件
 2. 在src/mock目录下的index.ts文件中导入新建的接口配置文件，并在，export中导出，参考例子
-
-### 附加说明
-
-- vueThis包位置：import { vueThis } from 'components/utils/send-http';
-- 如果不是采用degit脚手架克隆，直接通过npm安装公共组件需要在main.ts文件加入：vueThis(app);

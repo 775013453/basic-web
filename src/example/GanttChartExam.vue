@@ -83,15 +83,15 @@
 <script lang="ts" setup>
   import { GanttTableData, StableColumn } from '@/components/GanttChart.vue';
   import { ROOM_DATA } from '@/config/gantt-config';
-  import { ManipulateType } from 'dayjs';
+  import dayjs, { ManipulateType } from 'dayjs';
 
   const ganttData = {
     tableData: ROOM_DATA as Array<GanttTableData>,
     stableColumn: [{ label: '术间', width: '150px', align: 'center' }] as Array<StableColumn>,
     stableWidth: 150,
-    startDateTime: '2024-11-06 10:00',
-    endDateTime: '2024-11-06 19:10',
-    showEndDateTime: '2024-11-06 19:00',
+    startDateTime: dayjs().format('YYYY-MM-DD') + ' 10:00',
+    endDateTime: dayjs().format('YYYY-MM-DD') + ' 19:10',
+    showEndDateTime: dayjs().format('YYYY-MM-DD') + ' 19:00',
     timeType: 'minute' as ManipulateType,
     showTimePos: [11, 16]
   };

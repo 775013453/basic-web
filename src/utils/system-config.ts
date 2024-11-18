@@ -9,7 +9,8 @@ import { COMMON_FUNC } from '@/components/utils/common-func';
 
 export const SYSTEM_CONFIG = {
   systemName: '',
-  version: '0.0.0.1'
+  version: '0.0.0.1',
+  visitorMode: true // 游客模式，免登录
 };
 
 // 系统基本的URI路径配置

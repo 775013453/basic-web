@@ -151,8 +151,9 @@
     }
   };
 
-  // TODO: 临时处理未登录token失效问题
-  sessionStorage.setItem('_sid', 'abc0987654321');
+  if (SYSTEM_CONFIG.visitorMode) {
+    sessionStorage.setItem('_sid', LOGIN_INFO.accessToken);
+  }
 
   const pwdModifyDialog = ref(false),
     account = ref({
